@@ -1,0 +1,24 @@
+<mat-card class="email" id="{{ email.id }}">
+  <mat-card-header>
+    <mat-icon mat-card-avatar>email</mat-icon>
+    <mat-card-title-group>
+      <mat-card-title>{{ email.subject }}</mat-card-title>
+      <mat-card-subtitle>to: {{ email.to.join(", ") }}</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div style="padding: 10px;">
+      {{ email.content }}
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions [align]="'end'">
+    <button color="warn" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button color="primary" mat-icon-button>
+      <mat-icon>reply</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
