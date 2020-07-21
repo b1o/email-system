@@ -1,0 +1,10 @@
+<div>
+  <h2>Compose your email</h2>
+  <mat-form-field appearance="outline" class="example-form">
+    <mat-label>Enter your email text here</mat-label>
+    <textarea class="email-area" matInput [(ngModel)]="emailText" placeholder="Dear <name>..."></textarea>
+  </mat-form-field>
+  <div class="right-aligned-button" routerLink="email/compose">
+    <button type="button" mat-raised-button color="accent" (click)="onSend()">Send</button>
+  </div>
+</div>
