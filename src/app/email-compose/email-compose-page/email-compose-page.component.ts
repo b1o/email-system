@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./email-compose-page.component.scss']
 })
 export class EmailComposePageComponent implements OnInit {
-  emailText: any = '';
+  from: string;
+  to: string[];
+  subject: string;
+  content: string;
 
   constructor() { }
 
@@ -14,6 +17,11 @@ export class EmailComposePageComponent implements OnInit {
   }
 
   onSend() {
-    console.log(this.emailText);
+    console.log('from: ' + this.from);
+    console.log('to: ' + this.to);
+    console.log('subject: ' + this.subject);
+    console.log('content: ' + this.content);
+
+    // possibly integrate a network service and initiate a post request through it to the backend...
   }
 }
