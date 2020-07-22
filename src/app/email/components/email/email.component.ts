@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Email } from '../../models/email';
 
 @Component({
@@ -9,7 +9,19 @@ import { Email } from '../../models/email';
 export class EmailComponent implements OnInit {
   @Input() email: Email;
 
+  @Output() remove = new EventEmitter();
+  @Output() seen = new EventEmitter()
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
+  public onRemove() {
+    this.remove.emit(this.email.id);
+  }
+
+  public onSeen() {
+    this.seen.emit(this.email)
+  }
+
 }

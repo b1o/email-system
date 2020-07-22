@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Email, createTestEmail } from '../../email/models/email';
 import { getRandomNumber } from 'src/app/helpers';
+import { EmailService } from '../../email/services/email.service';
 
 @Component({
   selector: 'app-email-list-page',
@@ -8,13 +9,17 @@ import { getRandomNumber } from 'src/app/helpers';
   styleUrls: ['./email-list-page.component.scss'],
 })
 export class EmailListPageComponent implements OnInit {
-  public emails: Email[] = [];
 
-  constructor() {
-    for (let i = 0; i < getRandomNumber(1, 10); i++) {
-      this.emails.push(createTestEmail());
-    }
+
+  constructor(public emailService: EmailService) {}
+
+  ngOnInit(): void { }
+
+  public onEmailRemove(emailId) {
+    this.emailService.deleteEmail(emailId);
   }
 
-  ngOnInit(): void {}
+  public onEmailSeen(email: Email) {
+    this.emailService.updateEmail(email.id, {seen: true})
+  }
 }

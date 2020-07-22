@@ -8,16 +8,21 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 const MODULES = [
   MatListModule,
   MatFormFieldModule,
   MatProgressSpinnerModule,
   MatInputModule,
+  MatBadgeModule,
   MatCardModule,
   MatIconModule,
   MatSidenavModule,
   MatButtonModule,
+  MatChipsModule
 ];
 
 @NgModule({

@@ -2,14 +2,25 @@
   <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <div class="profile">User Profile</div>
     <mat-nav-list>
-      <mat-list-item>
-        <a matLine routerLink="/auth/login">Login</a>
+      <mat-list-item routerLink="/auth/login">
+        <a matLine class="padding-top">Login</a>
       </mat-list-item>
-      <mat-list-item>
-        <a matLine routerLink="/auth/register">Register</a>
+      <mat-list-item routerLink="/auth/register">
+        <a matLine class="padding-top">Register</a>
       </mat-list-item>
-      <mat-list-item>
-        <a matLine routerLink="/emails">Emails</a>
+      <mat-list-item routerLink="/emails">
+        <a matLine class="padding-top"
+          ><span
+            matBadgeColor="accent"
+            [matBadgeHidden]="newEmailsCount == 0"
+            matBadge="{{ newEmailsCount }}"
+            matBadgeSize="small"
+            >Emails</span
+          ></a
+        >
+      </mat-list-item>
+      <mat-list-item routerLink="/create">
+        <a matLine class="padding-top">Create email</a>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>

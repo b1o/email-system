@@ -3,10 +3,19 @@ import { getRandomNumber } from '../../helpers';
 
 export interface Email {
   id?: number;
-  content: string;
-  from: string;
-  subject: string;
-  to: string[];
+  content?: string;
+  from?: string;
+  subject?: string;
+  to?: string[];
+  seen?: boolean;
+}
+
+export const toEmail = (entity): Email => {
+  return {
+    id: entity.id,
+    content: entity.text,
+    ...entity
+  }
 }
 
 export const createTestEmail = (): Email => {
@@ -29,11 +38,13 @@ export const createTestEmail = (): Email => {
     to.push(lorem.generateWords(2));
   }
 
+
   return {
     id,
     subject,
     content,
     from,
     to,
+    seen: Math.random() > 0.5 ? false : true
   };
 };

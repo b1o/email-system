@@ -11,6 +11,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./email-list/email-list.module').then((m) => m.EmailListModule),
   },
+  {
+    path: 'create',
+    loadChildren: () =>
+      import('./email/pages/create-email/create-email-page.module').then(
+        (m) => m.CreateEmailPageModule
+      ),
+  },
 ];
 
 @NgModule({
