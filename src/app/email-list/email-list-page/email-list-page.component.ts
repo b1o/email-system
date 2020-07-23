@@ -21,6 +21,6 @@ export class EmailListPageComponent implements OnInit {
   }
 
   public onEmailRead(email: Email){
-    this.emailService.updateEmail(email.id, {seen: true})
+    this.emailService.updateEmail(email.id, email)
   }
 }

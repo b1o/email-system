@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {EmailService} from "../../services/email.service";
 import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-email',
@@ -14,7 +15,10 @@ export class CreateEmailComponent implements OnInit {
   public emailToInput: FormControl;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private fb: FormBuilder, private emailService: EmailService, private router: Router) {
+  constructor(private fb: FormBuilder,
+              private emailService: EmailService,
+              private router: Router,
+              private location: Location) {
     this.emailToInput = this.fb.control('');
 
     this.emailForm = this.fb.group({
@@ -41,6 +45,10 @@ export class CreateEmailComponent implements OnInit {
   sendEmail(){
     this.emailService.addEmail(this.emailForm.value);
     this.router.navigateByUrl('emails');
+  }
+
+  goBack(){
+    this.location.back();
   }
 
   ngOnInit(): void {

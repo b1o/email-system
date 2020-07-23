@@ -22,6 +22,7 @@ export class EmailComponent implements OnInit {
   }
 
   public onRead(){
+    this.email.seen = !this.email.seen;
     this.read.emit(this.email);
   }
 

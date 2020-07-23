@@ -17,6 +17,11 @@ const routes: Routes = [
     path: 'create',
     loadChildren: () => import('./email/pages/create-email-page/create-email-page.module')
       .then((m) => m.CreateEmailPageModule)
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./email/pages/edit-email-page/edit-email-page.module')
+      .then((m) => m.EditEmailPageModule)
   }
 ];
 

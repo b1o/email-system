@@ -1,4 +1,4 @@
-<mat-card class="email" id="{{email.id}}">
+<mat-card class="email" id="{{email.id}}" [ngClass]="{'read': !email.seen}">
   <mat-card-header>
     <mat-icon mat-card-avatar>email</mat-icon>
     <mat-card-title-group>
@@ -15,7 +15,8 @@
     <div>{{email.content}}</div>
   </mat-card-content>
   <mat-card-actions [align]="'end'">
-    <button mat-button style="margin-right: auto" (click)="onRead()">Mark as read</button>
+    <button mat-button style="margin-right: auto" (click)="onRead()">Mark as {{email.seen ? 'unread' : 'read'}}</button>
+    <button mat-button routerLink="../edit/{{email.id}}">Edit</button>
     <button mat-icon-button color="primary">
       <mat-icon>reply</mat-icon>
     </button>

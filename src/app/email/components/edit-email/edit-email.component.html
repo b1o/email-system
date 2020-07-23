@@ -1,0 +1,45 @@
+<mat-card class="email-form-container">
+  <mat-card-header>
+    <mat-card-title>Edit email</mat-card-title>
+  </mat-card-header>
+  <div class="form-wrapper" (ngSubmit)="editEmail()" [formGroup]="editForm">
+    <mat-card-content>
+      <div class="form-wrapper">
+        <mat-form-field>
+          <mat-label>Subject</mat-label>
+          <input type="text" matInput formControlName="subject">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>To</mat-label>
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let email of to.value" [removable]="true" (removed)="onEmailRemoved(email)">
+              {{email}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Add email..."
+              [formControl]="emailToInput"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addEmailUser($event)"
+            >
+          </mat-chip-list>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Content</mat-label>
+          <textarea rows="15" matInput formControlName="content"></textarea>
+        </mat-form-field>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions [align]="'end'">
+      <button mat-button (click)="goBack()">Cancel</button>
+      <button type="submit" mat-raised-button color="accent" (click)="editEmail()">Edit</button>
+    </mat-card-actions>
+
+  </div>
+
+</mat-card>
