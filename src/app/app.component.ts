@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EmailService } from './email/services/email.service';
+import {EmailService} from "./email/services/email.service";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,7 @@ import { EmailService } from './email/services/email.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'email-system';
 
   public newEmailsCount = 0;
 
@@ -14,6 +15,4 @@ export class AppComponent {
     this.emailService.newEmails()
       .subscribe(emails => this.newEmailsCount = emails.length)
   }
-
-  title = 'email-system';
 }

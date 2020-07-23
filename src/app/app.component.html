@@ -1,31 +1,30 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
-    <div class="profile">User Profile</div>
+  <mat-drawer #drawer [opened]="true" class="example-sidenav" mode="side">
+    <div class="profile">User profile</div>
     <mat-nav-list>
-      <mat-list-item routerLink="/auth/login">
-        <a matLine class="padding-top">Login</a>
+      <mat-list-item routerLink="auth/login">
+        <a matLine>Login</a>
       </mat-list-item>
-      <mat-list-item routerLink="/auth/register">
-        <a matLine class="padding-top">Register</a>
+      <mat-list-item routerLink="auth/register">
+        <a matLine>Register</a>
       </mat-list-item>
-      <mat-list-item routerLink="/emails">
-        <a matLine class="padding-top"
-          ><span
-            matBadgeColor="accent"
-            [matBadgeHidden]="newEmailsCount == 0"
-            matBadge="{{ newEmailsCount }}"
-            matBadgeSize="small"
-            >Emails</span
-          ></a
-        >
+      <mat-list-item routerLink="emails">
+        <a matLine class="badge">
+          <span matBadge="{{newEmailsCount}}" matBadgeSize="small" [matBadgeHidden]="newEmailsCount == 0">
+            Emails
+          </span>
+        </a>
       </mat-list-item>
-      <mat-list-item routerLink="/create">
-        <a matLine class="padding-top">Create email</a>
+      <mat-list-item routerLink="create">
+        <a matLine>Write email</a>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
 
   <div class="example-sidenav-content">
+
     <router-outlet></router-outlet>
+
   </div>
+
 </mat-drawer-container>

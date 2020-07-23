@@ -2,17 +2,11 @@
   min-width: 600px;
 }
 
-
 .form-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.form-field {
-  width: 100%;
+mat-form-field {
 
-}
-
-textarea {
-  min-height: 300px;
 }

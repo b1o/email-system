@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmailListPageComponent } from './email-list-page/email-list-page.component';
-import { Routes, Route, RouterModule } from '@angular/router';
-import { EmailModule } from '../email/email.module';
-import { MaterialModule } from '../material/material.module';
+import {Route, RouterModule} from "@angular/router";
+import {MaterialModule} from "../material/material.module";
+import {EmailModule} from "../email/email.module";
 
-const routes: Route[] = [{ path: '', component: EmailListPageComponent }];
+const routes: Route[] = [
+  { path: '', component: EmailListPageComponent }
+]
 
 @NgModule({
   declarations: [EmailListPageComponent],
@@ -13,7 +15,7 @@ const routes: Route[] = [{ path: '', component: EmailListPageComponent }];
     CommonModule,
     MaterialModule,
     EmailModule,
-    RouterModule.forChild(routes),
-  ],
+    RouterModule.forChild(routes)
+  ]
 })
-export class EmailListModule {}
+export class EmailListModule { }

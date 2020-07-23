@@ -1,27 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Email } from '../../models/email';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Email} from "../../models/email";
 
 @Component({
   selector: 'app-email',
   templateUrl: './email.component.html',
-  styleUrls: ['./email.component.scss'],
+  styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit {
   @Input() email: Email;
 
   @Output() remove = new EventEmitter();
-  @Output() seen = new EventEmitter()
+  @Output() read = new EventEmitter()
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
-  public onRemove() {
+  public onRemove(){
     this.remove.emit(this.email.id);
   }
 
-  public onSeen() {
-    this.seen.emit(this.email)
+  public onRead(){
+    this.read.emit(this.email);
   }
 
 }
