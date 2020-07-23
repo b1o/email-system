@@ -10,7 +10,10 @@ export class EmailComponent implements OnInit {
   @Input() email: Email;
 
   @Output() remove = new EventEmitter();
-  @Output() seen = new EventEmitter()
+  @Output() seen = new EventEmitter();
+  @Output() edit = new EventEmitter();
+
+  public canEditEmail = false
 
   constructor() {}
 
@@ -22,6 +25,15 @@ export class EmailComponent implements OnInit {
 
   public onSeen() {
     this.seen.emit(this.email)
+  }
+
+  public onEdit() {
+    this.edit.emit(this.email.id);
+    this.canEditEmail = true;
+  }
+
+  public onSave() {
+    this.canEditEmail = false;
   }
 
 }

@@ -12,13 +12,28 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <div style="padding: 10px;">
-      {{ email.content }}
+    <div *ngIf="!canEditEmail" style="padding: 10px;">
+      <span>{{ email.content }}</span>
     </div>
+
+<!--    homework-->
+    <div *ngIf="canEditEmail">
+      <textarea id="edit-window" [(ngModel)]="email.content"></textarea>
+    </div>
+<!--    homework-->
+
   </mat-card-content>
 
   <mat-card-actions [align]="'end'">
     <button style="margin-right: auto;" mat-button (click)="onSeen()">Mark as Seen</button>
+
+<!--    homework-->
+    <button *ngIf="!canEditEmail" (click)="onEdit()" color="primary" mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button id="save" *ngIf="canEditEmail" (click)="onSave()" mat-button>Save</button>
+<!--    homework-->
+
     <button (click)="onRemove()" color="warn" mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
