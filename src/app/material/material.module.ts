@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 const MODULES = [
@@ -22,7 +22,7 @@ const MODULES = [
   MatIconModule,
   MatSidenavModule,
   MatButtonModule,
-  MatChipsModule
+  MatChipsModule,
 ];
 
 @NgModule({

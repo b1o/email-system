@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { EmailComponent } from './components/email/email.component';
 import { MaterialModule } from '../material/material.module';
 import { CreateEmailComponent } from './components/create-email/create-email.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [EmailComponent, CreateEmailComponent],
   exports: [EmailComponent, CreateEmailComponent],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+    imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
 })
 export class EmailModule {}
