@@ -12,16 +12,20 @@ const routes: Routes = [
       import('./email-list/email-list.module').then((m) => m.EmailListModule),
   },
   {
-    path: 'create',
+    path: 'email',
     loadChildren: () =>
       import('./email/pages/create-email/create-email-page.module').then(
         (m) => m.CreateEmailPageModule
       ),
   },
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

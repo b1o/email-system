@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatRippleModule} from '@angular/material/core';
 
 
 const MODULES = [
@@ -17,6 +18,7 @@ const MODULES = [
   MatFormFieldModule,
   MatProgressSpinnerModule,
   MatInputModule,
+  MatRippleModule,
   MatBadgeModule,
   MatCardModule,
   MatIconModule,

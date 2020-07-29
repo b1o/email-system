@@ -1,0 +1,15 @@
+<div>
+  <form class="create-user-form">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input name="name" type="text" matInput [(ngModel)]="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input name="age" type="number" matInput [(ngModel)]="age">
+    </mat-form-field>
+
+    <button (click)="createUser()" mat-raised-button mat>Create</button>
+  </form>
+</div>

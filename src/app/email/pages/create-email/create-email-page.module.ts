@@ -4,7 +4,11 @@ import { Route, RouterModule } from '@angular/router';
 import { EmailModule } from '../../email.module';
 import { CreateEmailComponent } from '../../components/create-email/create-email.component';
 
-const routes: Route[] = [{ path: '', component: CreateEmailComponent }];
+const routes: Route[] = [
+  { path: '', redirectTo: 'create', pathMatch: 'full' },
+  { path: 'create', component: CreateEmailComponent },
+  { path: ':id', component: CreateEmailComponent },
+];
 
 @NgModule({
   declarations: [],
