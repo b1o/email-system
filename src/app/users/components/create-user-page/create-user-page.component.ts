@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 export class CreateUserPageComponent implements OnInit {
   public name: string = '';
   public age: number = null;
+  public password: '';
 
   constructor(private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void { }
 
   createUser() {
-    this.usersService.createUser(this.name, this.age)
+    this.usersService.createUser(this.name, this.age, this.password)
       .subscribe(response => {
         this.router.navigateByUrl('/users')
       })

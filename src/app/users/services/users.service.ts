@@ -9,8 +9,8 @@ export class UsersService {
 
   constructor(private network: HttpClient) {}
 
-  public createUser(name: string, age: number) {
-    return this.network.post(this.backend + 'user/create', { name, age });
+  public createUser(name: string, age: number, password) {
+    return this.network.post(this.backend + 'user/create', { name, age, password });
   }
 
   public getAllUsers() {

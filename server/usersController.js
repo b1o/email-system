@@ -1,42 +1,55 @@
 const path = require("path");
-const fs = require('fs')
-let users = [];
+const fs = require("fs");
+const database = require("./databaseService");
+const uuid = require("uuid").v4;
 
 exports.createUser = (req, res) => {
-  const id = Math.random();
+  const id = uuid();
   const body = req.body;
 
   const user = { id, ...body };
-  users.push(user);
+  database.addUser(user);
 
-  updateDatabase(() => {
+  database.updateDatabase(() => {
     res.json(user);
   });
-}
+};
 
 exports.getUsers = (req, res) => {
-  console.log(users);
-  res.json(users);
-}
+  res.json(database.getAllUsers());
+};
 
-function updateDatabase(callback) {
-  const filePath = path.join(__dirname, "/database.json");
-  fs.writeFile(filePath, JSON.stringify(users), () => {
-    console.log("database update complete");
+// Post request with body {email, password, username, phonenumber}
+exports.registerUser = (req, res) => {
+  const id = uuid();
+  const body = req.body;
 
-    if (callback) {
-      callback();
+  const user = { id, ...body };
+  database.addUser(user);
+  this.loginUser(req, res)
+};
+
+exports.loginUser = (req, res) => {
+  // email, password
+  const body = req.body;
+  const users = database.getAllUsers();
+  let existingUser;
+  users.forEach((user) => {
+    if (user.email == body.email && user.password == body.password) {
+      database.updateUser(user.id, { session: uuid() });
+      existingUser = user;
     }
   });
-}
 
-exports.readDatabase = () => {
-  const filePath = path.join(__dirname, "/database.json");
-  fs.readFile(filePath, (err, file) => {
-    if (err) {
-      console.error(err);
-    }
-    users = JSON.parse(file);
-    console.log(users)
-  });
+  if (existingUser) {
+    return res.json(existingUser);
+  } else {
+    return res.status(401).json({ error: "Auth failed" });
+  }
+};
+
+exports.logoutUser = (req, res) => {
+  const body = req.body;
+  database.updateUser(body.userId, { session: null })
+  res.json({})
 }

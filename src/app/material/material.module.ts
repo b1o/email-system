@@ -9,9 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatRippleModule} from '@angular/material/core';
-
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const MODULES = [
   MatListModule,
@@ -19,12 +19,13 @@ const MODULES = [
   MatProgressSpinnerModule,
   MatInputModule,
   MatRippleModule,
+  MatSnackBarModule,
   MatBadgeModule,
   MatCardModule,
   MatIconModule,
   MatSidenavModule,
   MatButtonModule,
-  MatChipsModule
+  MatChipsModule,
 ];
 
 @NgModule({
