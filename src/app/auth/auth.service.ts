@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoginDTO } from './models/loginDTO';
 import { RegisterDTO } from './models/registerDTO';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { delay, catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -25,9 +25,9 @@ export class AuthService {
   public login(dto: LoginDTO) {
     return this.http.post<User>(this.backend + 'auth/login', dto).pipe(
       tap((user) => (this.currentUser = user)),
-      catchError((err) => {
+      catchError((err, caught) => {
         this.snackBar.open(err.error.error);
-        return of(err);
+        return throwError(err);
       })
     );
   }
@@ -43,7 +43,7 @@ export class AuthService {
       tap((user) => (this.currentUser = user)),
       catchError((err) => {
         this.snackBar.open(err.error.error);
-        return of(err);
+        return throwError(err);
       })
     );
   }

@@ -30,6 +30,7 @@ export class LoginPageComponent implements OnInit {
         },
         (err) => {
           this.loading = false;
+          console.log('error')
         }
       );
     } else {
