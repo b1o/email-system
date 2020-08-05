@@ -7,6 +7,18 @@ exports.createUser = (req, res) => {
   const id = uuid();
   const body = req.body;
 
+  const loggedUser = req.body.loggedUser;
+
+  if (!loggedUser) {
+    res.status(403).json({ error: "No access to this page" });
+    return;
+  }
+
+  if (!loggedUser.isAdmin) {
+    res.status(403).json({ error: "No access to this page" });
+    return;
+  }
+
   const user = { id, ...body };
   database.addUser(user);
 
@@ -16,6 +28,7 @@ exports.createUser = (req, res) => {
 };
 
 exports.getUsers = (req, res) => {
+  console.log(req.currentUser);
   res.json(database.getAllUsers());
 };
 
@@ -23,10 +36,22 @@ exports.getUsers = (req, res) => {
 exports.registerUser = (req, res) => {
   const id = uuid();
   const body = req.body;
-
   const user = { id, ...body };
   database.addUser(user);
-  this.loginUser(req, res)
+  this.loginUser(req, res);
+};
+
+exports.getUserInfo = (req, res) => {
+  if (req.currentUser) {
+    const user = database.getUserById(req.currentUser.id);
+    console.log(user);
+
+    if (user && user.session) {
+      res.json(user);
+    } else {
+      res.status(401).json({ error: "No auth" });
+    }
+  }
 };
 
 exports.loginUser = (req, res) => {
@@ -49,7 +74,10 @@ exports.loginUser = (req, res) => {
 };
 
 exports.logoutUser = (req, res) => {
-  const body = req.body;
-  database.updateUser(body.userId, { session: null })
-  res.json({})
-}
+  const user = req.currentUser;
+
+  if (user) {
+    database.updateUser(user.id, { session: null });
+  }
+  res.json({});
+};

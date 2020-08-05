@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:server": "cd server & node server.js"
+    "start:server": "cd server & nodemon server.js"
   },
   "private": true,
   "dependencies": {

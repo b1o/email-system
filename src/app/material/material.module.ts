@@ -12,12 +12,17 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 const MODULES = [
   MatListModule,
   MatFormFieldModule,
+  MatTabsModule,
   MatProgressSpinnerModule,
   MatInputModule,
+  MatAutocompleteModule,
   MatRippleModule,
   MatSnackBarModule,
   MatBadgeModule,

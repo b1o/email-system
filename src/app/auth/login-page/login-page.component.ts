@@ -17,6 +17,10 @@ export class LoginPageComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    if (this.auth.currentUser) {
+      this.router.navigateByUrl('/emails')
+    }
   }
 
   onLogin() {

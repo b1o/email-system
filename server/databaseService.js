@@ -1,5 +1,7 @@
-const path = require('path')
-const fs = require('fs')
+const path = require("path");
+const fs = require("fs");
+const objectToArray = require("./helpers").objectToArray;
+const uuid = require('uuid').v4;
 
 let database = {
   users: {},
@@ -28,6 +30,8 @@ exports.readDatabase = () => {
   });
 };
 
+//#region Users
+
 exports.addUser = (user) => {
   database.users[user.id] = user;
   this.updateDatabase();
@@ -36,16 +40,35 @@ exports.addUser = (user) => {
 exports.deleteUser = (userId) => {
   delete database.users[userId];
   this.updateDatabase();
-}
+};
+
+exports.getUserById = (userId) => {
+  return database.users[userId];
+};
 
 exports.updateUser = (userId, changes) => {
-
   const userToUpdate = database.users[userId];
   const updatedUser = { ...userToUpdate, ...changes };
   database.users[userId] = updatedUser;
   this.updateDatabase();
-}
+};
 
 exports.getAllUsers = () => {
-  return Object.keys(database.users).map(key => database.users[key])
+  return objectToArray(database.users);
+};
+//#endregion
+
+//#region Emails
+exports.getEmails = () => {
+  return objectToArray(database.emails);
+};
+
+exports.createEmail = (email) => {
+  const emailId = uuid();
+  const emailWithId =  { ...email, emailId };
+  database.emails[emailId] = emailWithId;
+  this.updateDatabase();
+  return emailWithId;
 }
+
+//#endregion

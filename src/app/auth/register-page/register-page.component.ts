@@ -19,6 +19,9 @@ export class RegisterPageComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       password: ['', Validators.required],
     });
+    if (this.auth.currentUser) {
+      this.router.navigateByUrl('/emails')
+    }
   }
 
   onRegister() {

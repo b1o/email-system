@@ -5,14 +5,14 @@
       <mat-card-title>{{ email.subject }}</mat-card-title>
       <mat-card-subtitle>
         <mat-chip-list>
-          <mat-chip *ngFor="let user of email.to">{{user}}</mat-chip>
+          <mat-chip *ngFor="let user of email.to">{{user.username}}</mat-chip>
         </mat-chip-list>
       </mat-card-subtitle>
     </mat-card-title-group>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <div appSelectable [selectableText]="email.from" style="padding: 10px;">
+    <div appSelectable [selectableText]="email.from.username" style="padding: 10px;">
       <p >{{ email.content }}</p>
 
     </div>

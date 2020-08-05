@@ -13,8 +13,9 @@ export class AppComponent {
   public newEmailsCount = 0;
 
   constructor(private emailService: EmailService, public authService: AuthService, private router: Router) {
-    this.emailService.newEmails()
-      .subscribe(emails => this.newEmailsCount = emails.length)
+
+      this.authService.checkServerAuth()
+        .subscribe(user => this.authService.setUser(user))
   }
 
   title = 'email-system';
