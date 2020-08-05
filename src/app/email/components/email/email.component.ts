@@ -18,7 +18,7 @@ export class EmailComponent implements OnInit {
   ngOnInit(): void { }
 
   public onRemove() {
-    this.remove.emit(this.email.id);
+    this.remove.emit(this.email.emailId);
   }
 
   public onSeen() {

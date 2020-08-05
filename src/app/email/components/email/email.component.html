@@ -1,4 +1,4 @@
-<mat-card class="email" id="{{ email.id }}">
+<mat-card class="email" id="{{ email.emailId }}">
   <mat-card-header>
     <mat-icon mat-card-avatar>email</mat-icon>
     <mat-card-title-group>
@@ -20,7 +20,7 @@
 
   <mat-card-actions [align]="'end'">
     <button style="margin-right: auto;" mat-button (click)="onSeen()">Mark as Seen</button>
-    <button mat-button  routerLink="/email/{{email.id}}">Edit</button>
+    <button mat-button  routerLink="/email/{{email.emailId}}">Edit</button>
     <button (click)="onRemove()" color="warn" mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>

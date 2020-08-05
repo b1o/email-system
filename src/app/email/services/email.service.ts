@@ -32,19 +32,22 @@ export class EmailService {
   }
 
   public updateEmail(emailId, changes: Email) {
-    this.emailData = this.emailData.map((email) => {
-      if (email.id == emailId) {
-        return { ...email, ...changes };
-      }
+    // this.emailData = this.emailData.map((email) => {
+    //   if (email.emailId == emailId) {
+    //     return { ...email, ...changes };
+    //   }
 
-      return email;
-    });
+    //   return email;
+    // });
 
-    this.emails$.next(this.emailData);
+    // this.emails$.next(this.emailData);
+
+    //TODO: use the backend
+
   }
 
   public getEmailById(emailId) {
-    return of(this.emailData.find((e) => e.id == emailId)).pipe(delay(1000))
+    return of(this.emailData.find((e) => e.emailId == emailId)).pipe(delay(1000))
   }
 
   public getSentEmails() {
@@ -63,7 +66,7 @@ export class EmailService {
   }
 
   public deleteEmail(emailId) {
-    this.emailData = this.emailData.filter((e) => e.id != emailId);
+    this.emailData = this.emailData.filter((e) => e.emailId != emailId);
     this.emails$.next(this.emailData);
   }
 }

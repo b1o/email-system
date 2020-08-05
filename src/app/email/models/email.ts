@@ -3,7 +3,7 @@ import { getRandomNumber } from '../../helpers';
 import { User } from 'src/app/users/models/user';
 
 export interface Email {
-  id?: number;
+  emailId?: number;
   content?: string;
   from?: User;
   subject?: string;
@@ -13,7 +13,7 @@ export interface Email {
 
 export const toEmail = (entity): Email => {
   return {
-    id: entity.id,
+    emailId: entity.id,
     content: entity.text,
     ...entity
   }
