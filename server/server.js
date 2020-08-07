@@ -29,12 +29,14 @@ app.post("/user/create", auth, userController.createUser);
 app.post("/auth/logout", userController.logoutUser)
 
 app.get("/users/current", userController.getUserInfo)
-
 app.get("/users", auth, userController.getUsers);
 
 app.get("/emails", auth, emailsController.getEmails)
 app.get("/emails/sent", auth, emailsController.getSentEmails)
-
+app.get("/emails/new", auth, emailsController.newEmails)
+app.post("/emails/getEmailById", auth, emailsController.getEmailById)
+app.post("/emails/delete", auth, emailsController.deleteEmail)
+app.post("/emails/update", auth, emailsController.updateEmail)
 app.post("/emails/create", auth, emailsController.createEmail)
 
 app.listen(port, () => {

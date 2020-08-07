@@ -7,21 +7,23 @@
   ></app-email>
 </div> -->
 
-<mat-tab-group>
-  <mat-tab label="Sent">
-    <app-email
-    (seen)="onEmailSeen($event)"
-    (remove)="onEmailRemove($event)"
-    [email]="email"
-    *ngFor="let email of sentEmails"
-  ></app-email>
-  </mat-tab>
-  <mat-tab label="Received">
-    <app-email
-      (seen)="onEmailSeen($event)"
-      (remove)="onEmailRemove($event)"
-      [email]="email"
-      *ngFor="let email of emails"
-    ></app-email>
-  </mat-tab>
-</mat-tab-group>
+<div class="email-list">
+  <mat-tab-group>
+    <mat-tab label="Sent">
+      <app-email
+        (seen)="onEmailSeen($event)"
+        (remove)="onEmailRemove($event)"
+        [email]="email"
+        *ngFor="let email of sentEmails"
+      ></app-email>
+    </mat-tab>
+    <mat-tab label="Received">
+      <app-email
+        (seen)="onEmailSeen($event)"
+        (remove)="onEmailRemove($event)"
+        [email]="email"
+        *ngFor="let email of emails"
+      ></app-email>
+    </mat-tab>
+  </mat-tab-group>
+</div>

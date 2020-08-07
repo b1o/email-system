@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Email } from '../../email/models/email';
-import { getRandomNumber } from 'src/app/helpers';
-import { EmailService } from '../../email/services/email.service';
+import {Component, OnInit} from '@angular/core';
+import {Email} from '../../email/models/email';
+import {EmailService} from '../../email/services/email.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {timeout} from 'rxjs/operators';
 
 @Component({
   selector: 'app-email-list-page',
@@ -12,9 +13,14 @@ export class EmailListPageComponent implements OnInit {
   public emails = [];
   public sentEmails = [];
 
-  constructor(public emailService: EmailService) {}
+  constructor(public emailService: EmailService, private snackbar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
+    this.reloadEmails();
+  }
+
+  private reloadEmails() {
     this.emailService.getEmails().subscribe((emails) => (this.emails = emails));
 
     this.emailService
@@ -23,10 +29,21 @@ export class EmailListPageComponent implements OnInit {
   }
 
   public onEmailRemove(emailId) {
-    this.emailService.deleteEmail(emailId);
+    this.emailService.deleteEmail(emailId)
+      .subscribe(
+        (response) =>
+          this.snackbar.open('Successfully deleted this email', 'OK', {duration: 3000} ),
+        (error) => console.log(error)
+      );
+    this.reloadEmails();
   }
 
   public onEmailSeen(email: Email) {
-    this.emailService.updateEmail(email.emailId, { seen: true });
+    this.emailService.updateEmail(email.emailId, {seen: true})
+      .subscribe(
+        (response) =>
+          this.snackbar.open('Successfully marked this email as seen', 'OK', {duration: 3000} ),
+        (error) => console.log(error)
+      );;
   }
 }

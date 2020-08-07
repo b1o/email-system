@@ -63,6 +63,10 @@ exports.getEmails = () => {
   return objectToArray(database.emails);
 };
 
+exports.getEmailById = (emailId) => {
+  return database.emails[emailId];
+};
+
 exports.createEmail = (email) => {
   const emailId = uuid();
   const emailWithId =  { ...email, emailId };
@@ -70,5 +74,25 @@ exports.createEmail = (email) => {
   this.updateDatabase();
   return emailWithId;
 }
+
+exports.deleteEmail = (emailId) => {
+  /*const allEmails = database.getEmails();
+  const emailsAfterDeletedEmail = allEmails.filter((email) => email.id !== emailId);
+  database.emails = emailsAfterDeletedEmail;
+  */
+  delete database.emails[emailId];
+  this.updateDatabase();
+}
+
+exports.updateEmail = (emailId, changes) => {
+  const emailToBeUpdated = database.emails[emailId];
+  database.emails[emailId] = {...emailToBeUpdated, ...changes}
+  this.updateDatabase();
+}
+
+exports.newEmails = () => {
+  return objectToArray(database.emails).filter((e) => e.seen !== true);
+}
+
 
 //#endregion
