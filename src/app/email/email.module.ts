@@ -6,6 +6,7 @@ import { CreateEmailComponent } from './components/create-email/create-email.com
 import {ReactiveFormsModule} from "@angular/forms";
 import { EditEmailComponent } from './components/edit-email/edit-email.component';
 import {RouterModule} from "@angular/router";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -13,6 +14,7 @@ import {RouterModule} from "@angular/router";
   declarations: [EmailComponent, CreateEmailComponent, EditEmailComponent],
   imports: [
     CommonModule,
+    SharedModule,
     MaterialModule,
     ReactiveFormsModule,
     RouterModule

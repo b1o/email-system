@@ -28,6 +28,10 @@ export class EmailService {
     return this.emails$.asObservable();
   }
 
+  public getEmailById(emailId){
+    return this.emailData.find(e => e.id == emailId);
+  }
+
   public deleteEmail(emailId){
     this.emailData = this.emailData.filter(e => e.id != emailId);
     this.emails$.next(this.emailData);

@@ -25,9 +25,7 @@ export class EditEmailComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.emailID = params.get('id');
     })
-    this.emailService.getEmails().subscribe(emails => {
-      this.email = emails.find(e => e.id == this.emailID)
-    })
+    this.email = this.emailService.getEmailById(this.emailID);
     console.log(this.email);
     this.emailToInput = this.fb.control('');
 

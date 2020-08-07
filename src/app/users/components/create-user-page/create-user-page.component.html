@@ -1,0 +1,20 @@
+<div>
+  <form>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input name="name" type="text" matInput [(ngModel)]="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input name="age" type="number" matInput [(ngModel)]="age">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input name="password" type="password" matInput [(ngModel)]="password">
+    </mat-form-field>
+
+    <button (click)="createUser()" mat-raised-button>Create</button>
+  </form>
+</div>
