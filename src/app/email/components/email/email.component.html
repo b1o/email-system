@@ -1,4 +1,4 @@
-<mat-card class="email" id="{{ email.emailId }}">
+<mat-card class="email" id="{{ email.emailId }}" [ngClass]="{'not-seen':!isSeen}">
   <mat-card-header>
     <mat-icon mat-card-avatar>email</mat-icon>
     <mat-card-title-group>
@@ -19,7 +19,7 @@
   </mat-card-content>
 
   <mat-card-actions [align]="'end'">
-    <button style="margin-right: auto;" mat-button (click)="onSeen()">Mark as Seen</button>
+    <button *ngIf="!isSeen" style="margin-right: auto;" mat-button (click)="onSeen()">Mark as Seen</button>
     <button mat-button  routerLink="/email/{{email.emailId}}">Edit</button>
     <button (click)="onRemove()" color="warn" mat-icon-button>
       <mat-icon>delete</mat-icon>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Email } from '../../models/email';
 import { Location } from '@angular/common';
+import {EmailService} from '../../services/email.service';
 
 @Component({
   selector: 'app-email',
@@ -11,11 +12,17 @@ export class EmailComponent implements OnInit {
   @Input() email: Email;
 
   @Output() remove = new EventEmitter();
-  @Output() seen = new EventEmitter()
+  @Output() seen = new EventEmitter();
 
-  constructor(private _location: Location) {}
+  isSeen: boolean;
 
-  ngOnInit(): void { }
+  constructor(private _location: Location ) {
+  }
+
+  ngOnInit(): void {
+    this.isSeen = this.email.seen;
+
+  }
 
   public onRemove() {
     this.remove.emit(this.email.emailId);
@@ -23,6 +30,7 @@ export class EmailComponent implements OnInit {
 
   public onSeen() {
     this.seen.emit(this.email)
+    this.isSeen = !this.isSeen;
   }
 
 

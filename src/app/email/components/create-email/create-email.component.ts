@@ -17,6 +17,7 @@ import { Email } from '../../models/email';
 import { Location } from '@angular/common';
 import { UsersService } from 'src/app/users/services/users.service';
 import { User } from 'src/app/users/models/user';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-email',
@@ -40,7 +41,8 @@ export class CreateEmailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private _location: Location,
-    private userService: UsersService
+    private userService: UsersService,
+    private snackbar: MatSnackBar
   ) {
     this.emailForm = this.fb.group({
       to: [[], Validators.required],
@@ -99,7 +101,13 @@ export class CreateEmailComponent implements OnInit {
 
   submit() {
     if (this.isEditing) {
-      this.emailService.updateEmail(this.emailId, this.emailForm.value);
+      this.emailService.updateEmail(this.emailId, this.emailForm.value)
+        .subscribe(
+          (res) => this.snackbar.open('Successfully updated this email', 'OK', {duration: 3000} ),
+          (err) => console.log(err)
+        );
+      this.router.navigateByUrl('/emails');
+
     } else {
       this.emailService.addEmail(this.emailForm.value).subscribe((_) => {
         this.router.navigateByUrl('/emails');

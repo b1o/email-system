@@ -16,8 +16,8 @@ export const toEmail = (entity): Email => {
     emailId: entity.id,
     content: entity.text,
     ...entity
-  }
-}
+  };
+};
 
 // export const createTestEmail = (): Email => {
 //   const lorem = new LoremIpsum({
