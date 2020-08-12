@@ -28,6 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'users',
+    canActivate: [IsLoggedInGuard],
     loadChildren: () => import('./users/users.module')
       .then((m) => m.UsersModule)
   }

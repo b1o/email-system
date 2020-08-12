@@ -1,1 +1,70 @@
-{"users":{"bc23f511-5013-48bf-83ad-8de73e27e726":{"id":"bc23f511-5013-48bf-83ad-8de73e27e726","username":"pesho","email":"pesho@mail.bg","phoneNumber":"088888888","password":"123","session":"8eee5087-b761-4b99-9a72-42f7b92f62af"},"admin":{"id":"admin","isAdmin":true,"username":"admin","email":"admin@mail.bg","phoneNumber":"088888888","password":"admin123","session":"b0b9add7-30f7-4bf4-8ecb-8dac37f7955a"},"4729236e-961e-43bb-b64d-87dcde4a1b5d":{"id":"4729236e-961e-43bb-b64d-87dcde4a1b5d","name":"Gogo","age":8,"password":"gogo"}},"emails":{}}
+{
+  "users": {
+    "bc23f511-5013-48bf-83ad-8de73e27e726": {
+      "id": "bc23f511-5013-48bf-83ad-8de73e27e726",
+      "username": "pesho",
+      "email": "pesho@mail.bg",
+      "phoneNumber": "088888888",
+      "password": "123",
+      "session": "2c717b61-bbff-4e2a-9e37-ec6c01b6c822"
+    },
+    "admin": {
+      "id": "admin",
+      "isAdmin": true,
+      "username": "admin",
+      "email": "admin@mail.bg",
+      "phoneNumber": "088888888",
+      "password": "admin123",
+      "session": null
+    },
+    "4729236e-961e-43bb-b64d-87dcde4a1b5d": {
+      "id": "4729236e-961e-43bb-b64d-87dcde4a1b5d",
+      "name": "Gogo",
+      "age": 8,
+      "password": "gogo"
+    }
+  },
+  "emails": {
+    "b0953da0-03d8-4e2c-bbbb-687aba10402a": {
+      "to": [
+        {
+          "id": "admin",
+          "isAdmin": true,
+          "username": "admin",
+          "email": "admin@mail.bg",
+          "phoneNumber": "088888888",
+          "password": "admin123",
+          "session": null
+        }
+      ],
+      "subject": "proba",
+      "content": "Admineee zdrastee kak sii",
+      "from": {
+        "id": "bc23f511-5013-48bf-83ad-8de73e27e726",
+        "username": "pesho",
+        "email": "pesho@mail.bg",
+        "phoneNumber": "088888888",
+        "password": "123",
+        "session": null
+      },
+      "emailId": "b0953da0-03d8-4e2c-bbbb-687aba10402a",
+      "seen": true
+    },
+    "062becec-76ad-4016-ac1a-05a408e8f297": {
+      "to": [
+        {
+          "id": "bc23f511-5013-48bf-83ad-8de73e27e726",
+          "username": "pesho",
+          "email": "pesho@mail.bg",
+          "phoneNumber": "088888888",
+          "password": "123",
+          "session": null
+        }
+      ],
+      "subject": "op tuka sum",
+      "content": "Zdrasti Pesho!\n\nDobre sum, ti kak si?",
+      "from": "admin",
+      "emailId": "062becec-76ad-4016-ac1a-05a408e8f297"
+    }
+  }
+}

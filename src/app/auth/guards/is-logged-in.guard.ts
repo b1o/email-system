@@ -14,26 +14,11 @@ export class IsLoggedInGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.currentUser) {
-      console.log('auth success');
-      return true;
+    if (!this.authService.currentUser) {
+      this.router.navigateByUrl('/auth/login');
+
     }
-    else {
-      // if (localStorage.getItem('user'){
-      //   const userId = localStorage.getItem('user');
-      //   return this.authService.getCurrentUser(userId)
-      //     .pipe(
-      //       map(user => {
-      //         this.authService.setUser(user);
-      //         return true;
-      //       }),
-      //     catchError(err => {
-      //       this.router.navigateByUrl('/auth/login');
-      //     }))
-      // }
-      console.log('auth failed');
-    }
-    this.router.navigateByUrl('auth/login');
+    return !!this.authService.currentUser;
   }
 
 }

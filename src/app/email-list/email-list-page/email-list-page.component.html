@@ -1,8 +1,29 @@
-<div class="email-list">
-<app-email
-  (remove)="onEmailRemove($event)"
-  (read)="onEmailRead($event)"
-  [email]="email"
-  *ngFor="let email of emailService.getEmails() | async"
-></app-email>
-</div>
+<!--<div class="email-list">-->
+<!--<app-email-->
+<!--  (remove)="onEmailRemove($event)"-->
+<!--  (read)="onEmailRead($event)"-->
+<!--  [email]="email"-->
+<!--  *ngFor="let email of emailService.getEmails() | async"-->
+<!--&gt;</app-email>-->
+<!--</div>-->
+
+<mat-tab-group>
+  <mat-tab label="Sent">
+    <app-email
+      (read)="onEmailRead($event)"
+      (remove)="onEmailRemove($event)"
+      [email]="email"
+      [type]="'sent'"
+      *ngFor="let email of sentEmails"
+    ></app-email>
+  </mat-tab>
+  <mat-tab label="Received">
+    <app-email
+      (read)="onEmailRead($event)"
+      (remove)="onEmailRemove($event)"
+      [email]="email"
+      [type]="'received'"
+      *ngFor="let email of emails"
+    ></app-email>
+  </mat-tab>
+</mat-tab-group>

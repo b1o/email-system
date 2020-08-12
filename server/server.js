@@ -8,6 +8,7 @@ const staticFolder = path.join(__dirname, '../dist/email-system')
 const fs = require('fs');
 const database = require('./databaseService');
 const userController = require('./usersController');
+const emailController = require('./emailsController');
 const auth = require('./auth-middleware').auth;
 const getRequestUser = require('./user-middleware').getRequestUser;
 
@@ -39,3 +40,13 @@ app.post('/user/create', auth, userController.createUser);
 app.post('/users/current', userController.getUserInfo);
 
 app.get('/users', auth, userController.getUsers);
+
+app.get("/emails", auth, emailController.getEmails);
+
+app.get("/emails/sent", auth, emailController.getSentEmails);
+
+app.post("/emails/create", auth, emailController.createEmail);
+
+app.post("/emails/delete", auth, emailController.deleteEmail);
+
+app.post("/emails/update", auth, emailController.updateEmail);

@@ -8,9 +8,10 @@ import {Email} from "../../models/email";
 })
 export class EmailComponent implements OnInit {
   @Input() email: Email;
+  @Input() type: string;
 
   @Output() remove = new EventEmitter();
-  @Output() read = new EventEmitter()
+  @Output() read = new EventEmitter();
 
   constructor() { }
 
@@ -18,7 +19,7 @@ export class EmailComponent implements OnInit {
   }
 
   public onRemove(){
-    this.remove.emit(this.email.id);
+    this.remove.emit(this.email.emailId);
   }
 
   public onRead(){

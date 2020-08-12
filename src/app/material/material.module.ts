@@ -11,6 +11,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatTabsModule} from "@angular/material/tabs";
 
 const MODULES = [
   MatSidenavModule,
@@ -23,7 +25,9 @@ const MODULES = [
   MatProgressSpinnerModule,
   MatChipsModule,
   MatBadgeModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  MatTabsModule
 ]
 
 @NgModule({

@@ -16,8 +16,8 @@ export class AppComponent {
   constructor(private emailService: EmailService,
               public authService: AuthService,
               private router: Router) {
-    this.emailService.newEmails()
-      .subscribe(emails => this.newEmailsCount = emails.length)
+    this.authService.checkServerAuth()
+      .subscribe(user => this.authService.setUser(user));
   }
 
   public logout(){

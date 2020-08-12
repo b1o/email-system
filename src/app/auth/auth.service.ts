@@ -20,7 +20,16 @@ export class AuthService {
 
   public currentUser: User;
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+    if (localStorage.getItem('user')) {
+      this.currentUser = JSON.parse(localStorage.getItem('user')) as User;
+
+    }
+  }
+
+  public checkServerAuth() {
+    return this.http.get(this.backend + 'users/current')
+  }
 
   public login(dto: LoginDTO){
     return this.http.post<User>(this.backend + 'auth/login', dto).pipe(
@@ -35,7 +44,7 @@ export class AuthService {
     return this.http.post<User>(this.backend + 'auth/register', dto).pipe(
       tap(user => this.setUser(user)),
       catchError (err => {
-        this.snackBar.open(err.error.error)
+        this.snackBar.open(err.error.error, 'OK', {duration: 3000});
         return of(err);
       }))
   }
@@ -43,7 +52,10 @@ export class AuthService {
   public logout(){
     return this.http
       .post(this.backend + 'auth/logout', {userId: this.currentUser.id})
-      .pipe(tap(() => this.currentUser = null))
+      .pipe(tap(() => {
+        (this.currentUser = null);
+        localStorage.removeItem('user')
+      }));
   }
 
   public getCurrentUser(userId){
@@ -52,6 +64,6 @@ export class AuthService {
 
   public setUser(user){
     this.currentUser = user;
-    localStorage.setItem('user', this.currentUser.id);
+    localStorage.setItem('user', JSON.stringify(this.currentUser));
   }
 }

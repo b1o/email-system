@@ -1,12 +1,13 @@
-<mat-card class="email" id="{{email.id}}" [ngClass]="{'read': !email.seen}">
+<mat-card class="email" id="{{email.emailId}}"
+          [ngClass]="{'read': (!email.seen && type == 'received')}">
   <mat-card-header>
     <mat-icon mat-card-avatar>email</mat-icon>
     <mat-card-title-group>
       <mat-card-title>{{email.subject}}</mat-card-title>
-      <mat-card-subtitle>from: {{email.from}}</mat-card-subtitle>
-      <mat-card-subtitle>
+<!--      <mat-card-subtitle>From: {{email.from.username}}</mat-card-subtitle>-->
+      <mat-card-subtitle>To:
         <mat-chip-list>
-          <mat-chip *ngFor="let user of email.to">{{user}}</mat-chip>
+          <mat-chip *ngFor="let user of email.to">{{user.username}}</mat-chip>
         </mat-chip-list>
       </mat-card-subtitle>
     </mat-card-title-group>
@@ -15,11 +16,17 @@
     <div>{{email.content}}</div>
   </mat-card-content>
   <mat-card-actions [align]="'end'">
-    <button mat-button style="margin-right: auto" (click)="onRead()">Mark as {{email.seen ? 'unread' : 'read'}}</button>
-    <button mat-button routerLink="../edit/{{email.id}}">Edit</button>
-    <button mat-icon-button color="primary">
-      <mat-icon>reply</mat-icon>
-    </button>
+    <ng-container *ngIf="type=='received'">
+      <button mat-button style="margin-right: auto"
+              (click)="onRead()">Mark as {{email.seen ? 'unread' : 'read'}}
+      </button>
+      <button mat-icon-button color="primary">
+        <mat-icon>reply</mat-icon>
+      </button>
+    </ng-container>
+    <ng-container *ngIf="type=='sent'">
+    <button mat-button routerLink="../edit/{{email.emailId}}">Edit</button>
+    </ng-container>
     <button mat-icon-button color="warn" (click)="onRemove()">
       <mat-icon>delete</mat-icon>
     </button>

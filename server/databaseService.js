@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require('fs');
+const uuid = require('uuid').v4;
 
 let database = {
   users: {},
@@ -53,4 +54,25 @@ exports.updateUser = (userId, changes) => {
 
 exports.getEmails = () => {
   return Object.keys(database.emails).map(key => database.emails[key]);
+}
+
+exports.createEmail = (email) => {
+  const emailId = uuid();
+  const emailWithId =  { ...email, emailId };
+  database.emails[emailId] = emailWithId;
+  this.updateDatabase();
+  return emailWithId;
+}
+
+exports.deleteEmail = (emailId) => {
+  delete database.emails[emailId];
+  this.updateDatabase();
+}
+
+exports.updateEmail = (emailId, changes) => {
+  const oldEmail = database.emails[emailId];
+  const updatedEmail = {...oldEmail, ...changes};
+  database.emails[emailId] = updatedEmail;
+  this.updateDatabase();
+  return updatedEmail;
 }

@@ -17,7 +17,7 @@ exports.createUser = (req, res) => {
 }
 
 exports.getUsers = (req, res) => {
-  if (req.currentUser.isAdmin){
+  if (req.currentUser){
     res.json(database.getAllUsers());
   }
   else {
@@ -52,19 +52,21 @@ exports.loginUser = (req, res) => {
 }
 
 exports.logoutUser = (req, res) => {
-  const body = req.body;
-  database.updateUser(body.userId, {session: null});
-  res.json();
+  const user = req.currentUser;
+  if (user) {
+    database.updateUser(user.id, { session: null });
+  }
+  res.json({});
 }
 
 exports.getUserInfo = (req, res) => {
-  const body = req.body;
-  userId = body.userId;
-  const user = database.getUserById(userId);
-  if (user && user.session){
-    res.json(user);
-  }
-  else {
-    res.status(401).json({error: 'No auth.'});
+  if (req.currentUser) {
+    const user = database.getUserById(req.currentUser.id);
+    console.log(user);
+    if (user && user.session) {
+      res.json(user);
+    } else {
+      res.status(401).json({error: 'No auth.'});
+    }
   }
 }
