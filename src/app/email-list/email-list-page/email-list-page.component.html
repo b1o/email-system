@@ -11,7 +11,7 @@
   <mat-tab label="Sent">
     <app-email
     (seen)="onEmailSeen($event)"
-    (remove)="onEmailRemove($event)"
+    (remove)="onEmailRemove($event, true)"
     [email]="email"
     *ngFor="let email of sentEmails"
   ></app-email>
@@ -19,7 +19,7 @@
   <mat-tab label="Received">
     <app-email
       (seen)="onEmailSeen($event)"
-      (remove)="onEmailRemove($event)"
+      (remove)="onEmailRemove($event, false)"
       [email]="email"
       *ngFor="let email of emails"
     ></app-email>

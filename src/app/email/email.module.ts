@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditEmailPageComponent } from './pages/edit-email-page/edit-email-page.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import * as fromEmails from './reducers/email-reducer';
 
 @NgModule({
   declarations: [EmailComponent, CreateEmailComponent, EditEmailPageComponent],
@@ -17,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     RouterModule,
     SharedModule,
+    StoreModule.forFeature('emails', fromEmails.reducer),
   ],
 })
 export class EmailModule {}
